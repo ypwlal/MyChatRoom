@@ -47,7 +47,7 @@ angular.module('chatRoom')
 	});
 	
 	socket.on('someone left', function(data){
-		updateList({usr: 'log', ctn: data.username+" has left", color:getUsernameColor(data.username)});
+		updateList({usr: 'log', ctn: data.username+" has left", color:getUsernameColor("log")});
 		updateList({usr: 'log', ctn: "Now current users number :"+data.numUsers, color:getUsernameColor("log")});
 		//console.log(data.username+" has left.");
 		//console.log("Now current users number :"+ data.numUsers);
@@ -107,8 +107,8 @@ angular.module('chatRoom')
 		socket.emit('stop typing');
 	};
 
-	$scope.keyUp = function(e){
-		var keycode = window.event?e.keyCode:e.which;
+	$scope.keyDown = function(event){
+		var e = event ? event : window.event;
 		TYPING = true;
 		//console.log(timer);
 		if(timer){
@@ -123,8 +123,12 @@ angular.module('chatRoom')
 			}
 		}, 4000);
 
-        if(keycode==13){
+        if(e.keyCode==13){
             socket.emit('stop typing');
+            if($scope.inputMessage == ''){
+            	TYPING = false;
+            	return false;
+            }
             socket.emit('input message', $scope.inputMessage );
             $scope.inputMessage = '';
             TYPING = false;
@@ -133,10 +137,10 @@ angular.module('chatRoom')
         }
 	};
 
-	$scope.login = function(e){//ng-if 有隔离scope不能直接$scope.nickname
-		
-		var keycode = window.event? e.keyCode: e.witch;
-		if(keycode==13){
+	$scope.login = function(event){//ng-if 有隔离scope不能直接$scope.nickname
+		var e = event ? event : window.event;
+		console.log(e);
+		if(e.keyCode == 13){
 			//console.log($scope.nickname);
 			socket.emit('comein', {username: $scope.nickname});
 		}

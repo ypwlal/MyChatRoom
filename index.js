@@ -52,7 +52,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('disconnect', function(){
-		if(UsersList.length > 1 ){
+		if(UsersList.length >= 1 ){
 			var index = -1;
 			for(var i=0;i<UsersList.length;i++){
 				if(UsersList[i] == socket.username){

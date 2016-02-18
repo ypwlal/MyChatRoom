@@ -8,9 +8,9 @@
 		<ul class="messages">
 			<li ng-repeat="msg in messagesList track by $index" ng-class="{ctnlog: msg.usr == 'log'}">
 				<span ng-if="msg.usr != 'log'" class="msg-usr" style="color:{{msg.color}}">{{msg.usr}}</span>
-				<span>{{msg.ctn}}</span>
+				<span ng-class="{isTyping: msg.ctn == ' is typing'}">{{msg.ctn}}</span>
 			</li>
 		</ul>
 	</div>
-	<input type="text" class="inputMessage form-control" ng-model="inputMessage" ng-blur="stopTyping()" placeholder="Type someting..." ng-keyup="keyUp($event)"/>
+	<input type="text" class="inputMessage form-control" ng-model="inputMessage" ng-blur="stopTyping()" placeholder="Type someting..." ng-keydown="keyDown($event)"/>
 </div>
