@@ -1,0 +1,49 @@
+.form-control.inputMessage{
+	position: fixed;
+    bottom: 0;
+    height: 60px;
+    border: 10px solid #000;
+}
+.messages{
+	list-style: outside none none;
+    height: 100%;
+    padding: 5px 0 5px 15px;
+    font-size: 200%;
+    margin: 0;
+}
+.inputNickname{
+	display: block; /*input display*/
+	margin: auto;
+    border-style: none none solid;
+    text-align: center;
+    border-width: medium medium 2px;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 100;
+    font-size: 200%;
+    letter-spacing: 2px;
+    outline: none;
+}
+.login-cell{
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+}
+.login-cell h2{
+	text-align: center;
+    margin: 150px 0 50px 0;
+    color: #fff;
+    font-size: 200%;
+}
+.ctnlog{
+	width: 100%;
+    margin: 10px auto;
+    text-align: center;
+    color: gray;
+    font-size: 70%;
+}
+.msg-usr{
+	font-weight: 700;
+	margin-right: 15px;
+}

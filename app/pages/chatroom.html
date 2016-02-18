@@ -1,0 +1,16 @@
+<div class="login-cell" ng-show="!isLogin">
+	<h2>What's your nickname</h2>
+	<input type="text" class="inputNickname" ng-model="nickname" placeholder="enter here" ng-keydown="login($event)" />
+</div>
+
+<div ng-show="isLogin">
+	<div class="chatArea">
+		<ul class="messages">
+			<li ng-repeat="msg in messagesList track by $index" ng-class="{ctnlog: msg.usr == 'log'}">
+				<span ng-if="msg.usr != 'log'" class="msg-usr" style="color:{{msg.color}}">{{msg.usr}}</span>
+				<span>{{msg.ctn}}</span>
+			</li>
+		</ul>
+	</div>
+	<input type="text" class="inputMessage form-control" ng-model="inputMessage" ng-blur="stopTyping()" placeholder="Type someting..." ng-keyup="keyUp($event)"/>
+</div>
