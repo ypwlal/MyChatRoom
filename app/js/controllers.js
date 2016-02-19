@@ -31,7 +31,7 @@ angular.module('chatRoom')
 		$scope.messagesList.push(msg);
 		if($scope.messagesList.length > 10){
 			$scope.messagesList.shift();
-			//console.log($scope.messagesList); 
+			console.log($scope.messagesList); 
 		}
 		$scope.$apply();
 	}; 
@@ -54,26 +54,26 @@ angular.module('chatRoom')
 	});
 
 	socket.on('someone typing', function(username){
-		var sameIndex = -1;
+		var typeIndex = -1;
 		for(var i=0;i<$scope.messagesList.length;i++){
 			if($scope.messagesList[i].ctn == " is typing" && $scope.messagesList[i].usr == username){
-				sameIndex = i;
+				typeIndex = i;
 			}
 		}
-		if(sameIndex == -1){
+		if(typeIndex == -1){
 			updateList({usr:username, ctn:" is typing",color:getUsernameColor(username)});
 		}	
 	});
 
 	socket.on('someone stop typing', function(username){//while stop typing,delete the '..is typing'
-		var sameIndex = -1;
+		var stopIndex = -1;
 		for(var i=0;i<$scope.messagesList.length;i++){
 			if($scope.messagesList[i].ctn == " is typing" && $scope.messagesList[i].usr == username){
-				sameIndex = i;
+				stopIndex = i;
 			}
 		}
-		if(sameIndex != -1){
-			for(var j=i;j<$scope.messagesList.length;j++){
+		if(stopIndex != -1){
+			for(var j=stopIndex;j<$scope.messagesList.length;j++){
 				$scope.messagesList[j] = $scope.messagesList[j+1];
 			}
 

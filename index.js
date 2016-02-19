@@ -6,6 +6,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var PORT = process.env.PORT ? process.env.PORT : 3000;
+
 app.use(express.static(path.join(__dirname, 'app')));
 
 app.get('/', function(req, res){
@@ -100,8 +102,8 @@ io.on('connection', function(socket){
 	});
 });
 
-http.listen(3000, function(){
-	console.log('listening on *:3000');
+http.listen(PORT, function(){
+	console.log('listening on *:'+PORT);
 });
 
 
